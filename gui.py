@@ -2,27 +2,22 @@ from tkinter import *
 from tkcalendar import Calendar
 from datetime import date
 # import tkFont
+from tkinter import ttk
 
+# Create Object
+root = Tk()
 
-window = Tk()
-
-# Add background color
-# window['background']='#87CEFF' # skyblue1:https://www.webucator.com/article/python-color-constants-module/
-
-window.title('Real-time Dashboard') #, font=(18,'Arial'))
-# window.configure(font = ("Comic Sans MS", 20, "bold")) #Arial
-Title = Label(text="Campus CO2 Emission Profile")
-Title.pack()
-Title.configure(font = ("Comic Sans MS", 20, "bold")) #Arial
-window.geometry('920x640')
+# Set geometry
+root.geometry("2000x2000")
 
 today = date.today()
 # today.place(x=0, y=0)
 
 # Add Calendar
-cal = Calendar(window, selectmode = 'day',
-               year = 2020, month = 5,
-               day = 22)
+cal = Calendar(root, selectmode='day',
+               year=2020, month=5,
+               day=22)
+cal.grid(column=0, row=0)
 
 
 def grad_date():
@@ -30,15 +25,18 @@ def grad_date():
 
 
 # Add Button and Label
-Button(window, text="Get Date", command=grad_date).pack() # ipadx=20, ipady=10) # pady=50)
-date = Label(window, text = "")
-date.place(x=5, y=0) #pack() # ipadx=50) #pady = 50)
+btn = Button(root, text="Get Date",
+       command=grad_date)
 
-Button(window, text="Refresh").pack()
+btn.grid(column=1, row=0)
 
-# Real-time Auto Refresh
-
-
+date = Label(root, text="")
+date.grid(column=0, row=1)
 
 
-window.mainloop()
+types = ['range', 'date']
+chosen = ttk.Combobox(root, values=types, width=7)
+chosen.grid(column=0, row=2)
+
+# Execute Tkinter
+root.mainloop()

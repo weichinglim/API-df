@@ -5,7 +5,11 @@ from tkcalendar import Calendar
 
 window = Tk()
 
-window.title('Campus CO2 Emission Profile') #, font=(18,'Arial'))
+# Add background color
+# window['background']='#87CEFF' # skyblue1:https://www.webucator.com/article/python-color-constants-module/
+
+window.title('Real-time Dashboard') #, font=(18,'Arial'))
+# window.configure(font = ("Comic Sans MS", 20, "bold")) #Arial
 Title = Label(text="Campus CO2 Emission Profile")
 Title.pack()
 Title.configure(font = ("Comic Sans MS", 20, "bold")) #Arial

@@ -1,13 +1,18 @@
 from tkinter import *
+from tkcalendar import Calendar
+from tkinter import ttk
 
-window = Tk()
+# Create Object
+root = Tk()
 
-window.title("Welcome to LikeGeeks app")
+# Set geometry
+root.geometry("2000x2000")
 
 # Add Calendar
-cal = Calendar(root, selectmode = 'day',
-               year = 2020, month = 5,
-               day = 22)
+cal = Calendar(root, selectmode='day',
+               year=2020, month=5,
+               day=22)
+cal.grid(column=0, row=0)
 
 
 def grad_date():
@@ -15,9 +20,18 @@ def grad_date():
 
 
 # Add Button and Label
-Button(root, text="Get Date", command=grad_date).pack(pady=20)
+btn = Button(root, text="Get Date",
+       command=grad_date)
 
-date = Label(root, text = "")
-date.pack(pady = 20)
+btn.grid(column=1, row=0)
 
-window.mainloop()
+date = Label(root, text="")
+date.grid(column=0, row=1)
+
+
+types = ['range', 'date']
+chosen = ttk.Combobox(root, values=types, width=7)
+chosen.grid(column=0, row=2)
+
+# Execute Tkinter
+root.mainloop()

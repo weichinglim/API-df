@@ -8,8 +8,9 @@ def co2_em_day(data,time):
     except:
         print("Invalid input")
     f = pan.plot.pie(subplots=False,title="CO2 Emission of Different Sources", shadow=True ,autopct='%1.1f%%',legend=True,ylabel='', labeldistance=None)
+    fig = f.get_figure()
     f.legend(['Natural Gas', 'Pellets', 'Coal', 'Oat Hulls','Electric'],bbox_to_anchor=(1, 1.02), loc='upper left')
-    return f
+    return fig
 
 def co2_em_history(data,time):
     if time=='full':
@@ -22,5 +23,6 @@ def co2_em_history(data,time):
     data = data.set_index('date')
     f = data.plot(title="CO2 Emission of Different Sources",legend=True)
     f.set_xticklabels(f.xaxis.get_majorticklabels(), rotation=45)
+    fig = f.get_figure()
     f.legend(['Natural Gas', 'Pellets', 'Coal', 'Oat Hulls','Electric'],bbox_to_anchor=(1, 1.02), loc='upper left')
-    return f
+    return fig

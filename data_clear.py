@@ -1,4 +1,4 @@
-import api_ele.py
+import api_ele
 import pandas as pd
 
 def new_data(data1,data2):

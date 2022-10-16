@@ -1,6 +1,7 @@
 from tkinter import *
 from tkcalendar import Calendar
 from datetime import date
+import datetime
 # import tkFont
 from tkinter import ttk
 import pandas as pd
@@ -8,10 +9,14 @@ import numpy as np
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg, 
 NavigationToolbar2Tk)
+import data_clear
+import figure
 
 
 
-
+ele = data_clear.electric_type()
+energy = data_clear.histroy_energy(ele)
+co2 = data_clear.co2_em(energy)
 
 # Create Object
 root = Tk()
@@ -19,26 +24,33 @@ root = Tk()
 # Set geometry
 root.geometry("1000x600")
 
-fig = Figure(figsize=(5, 4), dpi=100)
-t = np.arange(0, 3, .01)
-fig.add_subplot(111).plot(t, 2 * np.sin(2 * np.pi * t))
+# fig = figure.co2_em_day(co2,"2022-05-01")
 
-canvas = FigureCanvasTkAgg(fig, master=root)  # A tk.DrawingArea.
-canvas.draw()
-canvas.get_tk_widget().place(anchor=E, x=980, y=300, relheight=0.4, relwidth=0.4)
+# t = np.arange(0, 3, .01)
+# fig.add_subplot(111).plot(t, 2 * np.sin(2 * np.pi * t))
+
+# canvas = FigureCanvasTkAgg(fig, master=root)  # A tk.DrawingArea.
+# canvas.draw()
+# canvas.get_tk_widget().place(anchor=E, x=980, y=300, relheight=0.4, relwidth=0.4)
 
 today = date.today()
 # today.place(x=0, y=0)
 
 # Add Calendar
 cal = Calendar(root, selectmode='day',
-               year=2020, month=5,
+               year=2022, month=5,
                day=22)
 cal.place(anchor=NW, x=20, y=10, relheight=0.3, relwidth=0.3)
 
 def button_click(): 
-    date.config(text="Selected Date is: " + cal.get_date())
+    # date.config(text="Selected Date is: " + cal.get_date())
+    co2_time = datetime.datetime.strptime(cal.get_date(), "%m/%d/%y").strftime("20%y-%m-%d")
+    date.config(text="Selected Date is: " + co2_time)
+    fig = figure.co2_em_day(co2,co2_time)
+    canvas = FigureCanvasTkAgg(fig, master=root)  # A tk.DrawingArea.
     canvas.draw()
+    canvas.get_tk_widget().place(anchor=E, x=980, y=300, relheight=0.4, relwidth=0.4)
+    
 
 # Add Button and Label
 btn = Button(root, text="Confirm/Refresh",
@@ -73,6 +85,10 @@ date.place(anchor=NW, x=20, y=500, relheight=0.05, relwidth=0.2)
 types = ['range', 'date']
 chosen = ttk.Combobox(root, values=types, width=7)
 chosen.place(anchor=NW, x=20, y=300, relheight=0.05, relwidth=0.1)
+
+#################################################################
+
+# fig = figure.co2_em_day(co2,"2022-05-01")
 
 # Execute Tkinter
 root.mainloop()

@@ -23,9 +23,9 @@ co2 = data_clear.co2_em(energy)
 root = Tk()
 
 # Set geometry
-root.geometry("1000x600")
+root.geometry("1280x600")
 
-# fig = Figure(figsize=(5, 4), dpi=100)
+fig = Figure(figsize=(5, 4), dpi=100)
 # canvas = FigureCanvasTkAgg(fig, master=root)
 # canvas.get_tk_widget().place(anchor=E, x=980, y=300, relheight=0.4, relwidth=0.4)
 # fig = figure.co2_em_day(co2,"2022-05-01")
@@ -44,17 +44,17 @@ root.geometry("1000x600")
 cal = Calendar(root, selectmode='day',
                year=2022, month=5,
                day=22)
-cal.place(anchor=NW, x=20, y=10, relheight=0.3, relwidth=0.3)
+cal.place(anchor=NW, x=20, y=10, relheight=0.3, relwidth=0.25)
 
 def button_click(): 
-    # global fig
+    global fig
     # fig.clear()
+    fig.clear()
     
     if chosen.get() == 'range':
         range_start = datetime.datetime.strptime(range_1, "%m/%d/%y").strftime("20%y-%m-%d")
         range_end = datetime.datetime.strptime(range_2, "%m/%d/%y").strftime("20%y-%m-%d")
         time_input = [range_start, range_end]
-        print(time_input)
         fig = figure.co2_em_history(co2, time_input)
         
     elif chosen.get() == 'date':
@@ -65,10 +65,12 @@ def button_click():
         co2_time = datetime.datetime.strptime(cal.get_date(), "%m/%d/%y").strftime("20%y-%m-%d")
         date.config(text="Selected Date is: " + co2_time)
         fig = figure.co2_em_day(co2,co2_time)
+        print(type(fig))
         
     canvas = FigureCanvasTkAgg(fig, master=root)  # A tk.DrawingArea.
     canvas.draw()
-    canvas.get_tk_widget().place(anchor=E, x=980, y=300, relheight=0.4, relwidth=0.4)
+    canvas.get_tk_widget().place(anchor=E, x=1260, y=300, relheight=0.8, relwidth=0.7)
+    # canvas.get_tk_widget().place(x=300, y=100, width =800, height=400)
     
 
 # Add Button and Label
@@ -78,10 +80,10 @@ btn = Button(root, text="Confirm/Refresh",
 btn.place(anchor=NW, x=20, y=220, relheight=0.05, relwidth=0.1)
 
 range1 = Label(root, text="")
-range1.place(anchor=NW, x=20, y=350, relheight=0.05, relwidth=0.15)
+range1.place(anchor=NW, x=20, y=350, relheight=0.05, relwidth=0.1)
 
 range2 = Label(root, text="")
-range2.place(anchor=NW, x=130, y=350, relheight=0.05, relwidth=0.15)
+range2.place(anchor=NW, x=130, y=350, relheight=0.05, relwidth=0.1)
 
 range_1 = cal.get_date()
 range_2 = cal.get_date()

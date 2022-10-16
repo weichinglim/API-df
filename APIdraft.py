@@ -39,7 +39,7 @@ def get_api(request_url, name):
 def main():
 
     # Wind API
-    request_Wind = 'https://api.eia.gov/series/?api_key=wrLV2rktOe2MS5qzsVy8sFhs6ghNnDKt2lcPef0K&series_id=EBA.MISO-ALL.NG.WND.H&start=20210101T14Z'
+    request_Wind = 'https://api.eia.gov/series/?api_key=s271BdyiPWCqLm1TgLpr81CsMPhFMwqnJ2QXKaDL&series_id=EBA.MISO-ALL.NG.WND.H&start=20210101T14Z'
     nameW = "wind"
     dfW = get_api(request_Wind, nameW)
     aggW = agg_date(dfW)
@@ -47,7 +47,7 @@ def main():
     print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     
     # Solar API
-    request_Solar = 'https://api.eia.gov/series/?api_key=wrLV2rktOe2MS5qzsVy8sFhs6ghNnDKt2lcPef0K&series_id=EBA.MISO-ALL.NG.SUN.H&start=20210101T14Z'
+    request_Solar = 'https://api.eia.gov/series/?api_key=s271BdyiPWCqLm1TgLpr81CsMPhFMwqnJ2QXKaDL&series_id=EBA.MISO-ALL.NG.SUN.H&start=20210101T14Z'
     nameS = "solar"
     dfS = get_api(request_Solar, nameS)
     aggS = agg_date(dfS)
@@ -55,7 +55,7 @@ def main():
     print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     
     # HydroGen API
-    request_Hydro = 'https://api.eia.gov/series/?api_key=wrLV2rktOe2MS5qzsVy8sFhs6ghNnDKt2lcPef0K&series_id=EBA.MISO-ALL.NG.WAT.H&start=20210101T14Z'
+    request_Hydro = 'https://api.eia.gov/series/?api_key=s271BdyiPWCqLm1TgLpr81CsMPhFMwqnJ2QXKaDL&series_id=EBA.MISO-ALL.NG.WAT.H&start=20210101T14Z'
     nameH = "hydro"
     dfH = get_api(request_Hydro, nameH)
     aggH = agg_date(dfH)
@@ -63,7 +63,7 @@ def main():
     print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
 
     # CoalGen API
-    request_Coal = 'https://api.eia.gov/series/?api_key=wrLV2rktOe2MS5qzsVy8sFhs6ghNnDKt2lcPef0K&series_id=EBA.MISO-ALL.NG.COL.H&start=20220816T14Z'
+    request_Coal = 'https://api.eia.gov/series/?api_key=s271BdyiPWCqLm1TgLpr81CsMPhFMwqnJ2QXKaDL&series_id=EBA.MISO-ALL.NG.COL.H&start=20220816T14Z'
     nameC = "coal"
     dfC = get_api(request_Coal, nameC)
     aggC = agg_date(dfC)
@@ -71,7 +71,7 @@ def main():
     print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     
     # Natural Ges Gen API
-    request_NatGas = 'https://api.eia.gov/series/?api_key=wrLV2rktOe2MS5qzsVy8sFhs6ghNnDKt2lcPef0K&series_id=EBA.MISO-ALL.NG.NG.H&start=20220816T14Z'
+    request_NatGas = 'https://api.eia.gov/series/?api_key=s271BdyiPWCqLm1TgLpr81CsMPhFMwqnJ2QXKaDL&series_id=EBA.MISO-ALL.NG.NG.H&start=20220816T14Z'
     nameNG = "natGas"
     dfNat = get_api(request_NatGas, nameNG)
     aggNat = agg_date(dfNat)    
@@ -79,7 +79,7 @@ def main():
     print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     
     # Nuclear API
-    request_Nuclear = 'https://api.eia.gov/series/?api_key=wrLV2rktOe2MS5qzsVy8sFhs6ghNnDKt2lcPef0K&series_id=EBA.MISO-ALL.NG.NUC.H&start=20220816T14Z'
+    request_Nuclear = 'https://api.eia.gov/series/?api_key=s271BdyiPWCqLm1TgLpr81CsMPhFMwqnJ2QXKaDL&series_id=EBA.MISO-ALL.NG.NUC.H&start=20220816T14Z'
     nameNu = "nuclear"
     dfNu = get_api(request_Nuclear, nameNu)
     aggNu = agg_date(dfNu)    

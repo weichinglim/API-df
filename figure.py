@@ -7,9 +7,12 @@ def co2_em_day(data,time):
         pan = data.loc[data['date'] == time].drop(['date'],axis=1).iloc[0]
     except:
         print("Invalid input")
+        
+        
     f = pan.plot.pie(subplots=False,title="CO2 Emission of Different Sources", shadow=True ,autopct='%1.1f%%',legend=True,ylabel='', labeldistance=None)
     fig = f.get_figure()
     f.legend(['Natural Gas', 'Pellets', 'Coal', 'Oat Hulls','Electric'],bbox_to_anchor=(1, 1.02), loc='upper left')
+    
     return fig
 
 def co2_em_history(data,time):

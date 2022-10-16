@@ -51,9 +51,10 @@ def button_click():
     # fig.clear()
     
     if chosen.get() == 'range':
-        # range_start = datetime.datetime.strptime(range1.text, "%m/%d/%y").strftime("20%y-%m-%d")
-        # range_end = datetime.datetime.strptime(range2.text, "%m/%d/%y").strftime("20%y-%m-%d")
-        time_input = [range_1, range_2]
+        range_start = datetime.datetime.strptime(range_1, "%m/%d/%y").strftime("20%y-%m-%d")
+        range_end = datetime.datetime.strptime(range_2, "%m/%d/%y").strftime("20%y-%m-%d")
+        time_input = [range_start, range_end]
+        print(time_input)
         fig = figure.co2_em_history(co2, time_input)
         
     elif chosen.get() == 'date':
@@ -89,7 +90,7 @@ def button_click_range1():
     range1.config(text= cal.get_date())
     global range_1
     range_1 = cal.get_date()
-
+    
 def button_click_range2():
     range2.config(text= cal.get_date())
     global range_2
@@ -109,6 +110,7 @@ date.place(anchor=NW, x=20, y=500, relheight=0.05, relwidth=0.2)
 
 types = ['range', 'date']
 chosen = ttk.Combobox(root, values=types, width=7)
+chosen.current(0)
 chosen.place(anchor=NW, x=20, y=300, relheight=0.05, relwidth=0.1)
 
 #################################################################

@@ -1,11 +1,12 @@
 from tkinter import *
+from tkcalendar import Calendar
 
 window = Tk()
 
 window.title("Welcome to LikeGeeks app")
 
 # Add Calendar
-cal = Calendar(root, selectmode = 'day',
+cal = Calendar(window, selectmode = 'day',
                year = 2020, month = 5,
                day = 22)
 
@@ -15,9 +16,9 @@ def grad_date():
 
 
 # Add Button and Label
-Button(root, text="Get Date", command=grad_date).pack(pady=20)
+Button(window, text="Get Date", command=grad_date).pack(pady=20)
 
-date = Label(root, text = "")
+date = Label(window, text = "")
 date.pack(pady = 20)
 
 window.mainloop()

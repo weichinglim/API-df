@@ -18,12 +18,16 @@ ele = data_clear.electric_type()
 energy = data_clear.histroy_energy(ele)
 co2 = data_clear.co2_em(energy)
 
+
 # Create Object
 root = Tk()
 
 # Set geometry
 root.geometry("1000x600")
 
+# fig = Figure(figsize=(5, 4), dpi=100)
+# canvas = FigureCanvasTkAgg(fig, master=root)
+# canvas.get_tk_widget().place(anchor=E, x=980, y=300, relheight=0.4, relwidth=0.4)
 # fig = figure.co2_em_day(co2,"2022-05-01")
 
 # t = np.arange(0, 3, .01)
@@ -33,7 +37,7 @@ root.geometry("1000x600")
 # canvas.draw()
 # canvas.get_tk_widget().place(anchor=E, x=980, y=300, relheight=0.4, relwidth=0.4)
 
-today = date.today()
+# today = date.today()
 # today.place(x=0, y=0)
 
 # Add Calendar
@@ -43,10 +47,24 @@ cal = Calendar(root, selectmode='day',
 cal.place(anchor=NW, x=20, y=10, relheight=0.3, relwidth=0.3)
 
 def button_click(): 
-    # date.config(text="Selected Date is: " + cal.get_date())
-    co2_time = datetime.datetime.strptime(cal.get_date(), "%m/%d/%y").strftime("20%y-%m-%d")
-    date.config(text="Selected Date is: " + co2_time)
-    fig = figure.co2_em_day(co2,co2_time)
+    # global fig
+    # fig.clear()
+    
+    if chosen.get() == 'range':
+        # range_start = datetime.datetime.strptime(range1.text, "%m/%d/%y").strftime("20%y-%m-%d")
+        # range_end = datetime.datetime.strptime(range2.text, "%m/%d/%y").strftime("20%y-%m-%d")
+        time_input = [range_1, range_2]
+        fig = figure.co2_em_history(co2, time_input)
+        
+    elif chosen.get() == 'date':
+        # global canvas
+        # canvas.delete("all")
+        # fig.clear()
+        # date.config(text="Selected Date is: " + cal.get_date())
+        co2_time = datetime.datetime.strptime(cal.get_date(), "%m/%d/%y").strftime("20%y-%m-%d")
+        date.config(text="Selected Date is: " + co2_time)
+        fig = figure.co2_em_day(co2,co2_time)
+        
     canvas = FigureCanvasTkAgg(fig, master=root)  # A tk.DrawingArea.
     canvas.draw()
     canvas.get_tk_widget().place(anchor=E, x=980, y=300, relheight=0.4, relwidth=0.4)
@@ -64,11 +82,18 @@ range1.place(anchor=NW, x=20, y=350, relheight=0.05, relwidth=0.15)
 range2 = Label(root, text="")
 range2.place(anchor=NW, x=130, y=350, relheight=0.05, relwidth=0.15)
 
+range_1 = cal.get_date()
+range_2 = cal.get_date()
+
 def button_click_range1():
     range1.config(text= cal.get_date())
+    global range_1
+    range_1 = cal.get_date()
 
 def button_click_range2():
     range2.config(text= cal.get_date())
+    global range_2
+    range_2 = cal.get_date()
 
 
 btn_range1 = Button(root, text="RangeStart", command=button_click_range1)
